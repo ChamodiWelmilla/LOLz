@@ -88,7 +88,7 @@ class _JokeScreenState extends State<JokeScreen> with TickerProviderStateMixin {
 
   Future<void> fetchJokes() async {
     setState(() {
-      isLoading = true; // Indicate loading, but don't clear jokes
+      isLoading = true; 
     });
     try {
       final fetchedJokes = await jokeService.fetchJokesRaw(
