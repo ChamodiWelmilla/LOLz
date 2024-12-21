@@ -88,7 +88,7 @@ class _JokeScreenState extends State<JokeScreen> with TickerProviderStateMixin {
 
   Future<void> fetchJokes() async {
     setState(() {
-      isLoading = true; 
+      isLoading = true;
     });
     try {
       final fetchedJokes = await jokeService.fetchJokesRaw(
@@ -196,11 +196,13 @@ class _JokeScreenState extends State<JokeScreen> with TickerProviderStateMixin {
           }).toList(),
           Padding(
             padding: const EdgeInsets.only(top: 20.0),
-            child: ElevatedButton(
+            child: IconButton(
               onPressed: isLoading ? null : fetchJokes,
-              child: isLoading
-                  ? CircularProgressIndicator(color: Colors.white)
-                  : Text('Refresh Jokes'),
+              icon: isLoading
+                  ? CircularProgressIndicator(color: Color(0xFF568388))
+                  : Icon(Icons.refresh, size: 30.0),
+              color: Color(0xFF568388),
+              tooltip: 'Refresh Jokes',
             ),
           ),
         ],
@@ -264,7 +266,9 @@ class _JokeScreenState extends State<JokeScreen> with TickerProviderStateMixin {
                     joke['punchline'],
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.grey[700],
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.grey[500] 
+                          : Colors.grey[700], 
                     ),
                     textAlign: TextAlign.center,
                   ),
